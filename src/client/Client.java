@@ -29,6 +29,9 @@ public class Client {
     static CheckInput checkInput = new CheckInput();
     public static CurrentClient currentClient;
     public static Long pageCounter = 1L;
+    public static  ClientResponseReceiver receiver;
+    public static ClientRequestSender sender;
+    public static MainPageGUI mainPageGUI;
     
     @SuppressWarnings("unchecked")
 	public static void main(String[] args) {
@@ -38,9 +41,8 @@ public class Client {
         try {
         	ClientConnection connection = new ClientConnection();
         	connection.connect(SERVER_HOST, SERVER_PORT);
-        	ClientRequestSender sender = new ClientRequestSender(connection.getOut());
-            ClientResponseReceiver receiver = new ClientResponseReceiver(connection.getIn());
-            String input;
+        	sender = new ClientRequestSender(connection.getOut());
+            receiver = new ClientResponseReceiver(connection.getIn());
 
             RegistrationPageGUI registrationPageGUI = new RegistrationPageGUI();
             RegistrationHandler registrationHandler = new RegistrationHandler(registrationPageGUI, sender, receiver);
@@ -57,7 +59,7 @@ public class Client {
             //new CollectionView((HashMap<Long, String>) receiver.getResponce());
             //System.out.println(receiver.getData());
             ArrayList<TableElement> tableElements = PageParser.parsePage((String) receiver.getData());
-            MainPageGUI mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
+            mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);
             FilterHandler filterHandler = new FilterHandler(mainPageGUI, sender, receiver);

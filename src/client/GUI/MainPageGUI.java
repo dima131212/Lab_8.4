@@ -147,6 +147,7 @@ public class MainPageGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddPageGUI addPageGUI = new AddPageGUI();
+                addPageGUI.setAddHandler(new AddHandler(addPageGUI, Client.sender, Client.receiver));
                 addPageGUI.createAndShowWindow();
             }
         });

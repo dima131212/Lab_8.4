@@ -51,11 +51,7 @@ public class ElementInfoPageGUI {
         infoField = createInfoTextArea();
     }
 
-    /**
-     * Method which creates edit button
-     * @return {@code JButton} - new {@code JButton} with pre created configuration
-     * */
-    //TODO add action listener logic
+
     private JButton createEditButton() {
         JButton button = new JButton();
         button.setText(BUTTON_EDIT_TITLE);
@@ -77,7 +73,6 @@ public class ElementInfoPageGUI {
      * Method which creates delete button
      * @return {@code JButton} - new {@code JButton} with pre created configuration
      * */
-    //TODO add action listener logic
     private JButton createDeleteButton() {
         JButton button = new JButton();
         button.setText(BUTTON_DELETE_TITLE);
