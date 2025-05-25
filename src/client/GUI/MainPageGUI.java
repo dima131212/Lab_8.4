@@ -85,6 +85,8 @@ public class MainPageGUI {
     private FilterHandler filterHandler;
     private InfoHandler infoHandler;
     private JButton addButton;
+    private String currentUser;
+    private ArrayList<TableElement> savedElements;
 
     
     public MainPageGUI(String user, ArrayList<TableElement> elements) {
@@ -92,13 +94,28 @@ public class MainPageGUI {
         window.setSize(WINDOW_SIZE);
         window.setLayout(new BorderLayout(10, 10));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.userLabel = createLabel("User: ");
-        elementsTable = createFilmsTable(elements);
-        this.userLabel = createLabel("User: " + user);
+        currentUser = user;
+        savedElements = elements;
+
+        createElements(currentUser, savedElements);
+
+    }
+
+    public void createElements(String user, ArrayList<TableElement> movies) {
+        elementsTable = createFilmsTable(movies);
+        userLabel = createLabel("User: " + user);
         nextPageButton = createNextPageButton();
         sortingMenu = createSortingMenu();
         filtersMenu = createFiltersMenu();
         addButton = createAddButton();
+    }
+
+    public void repaint() {
+        window.setVisible(false);
+        window.removeAll();
+        savedElements = ((MovieTableModel) elementsTable.getModel()).getMovies();
+        createElements(currentUser, savedElements);
+        createAndShowWindow();
     }
     
     /**
