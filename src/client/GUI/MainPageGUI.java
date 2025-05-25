@@ -101,7 +101,7 @@ public class MainPageGUI {
 
     }
 
-    public void createElements(String user, ArrayList<TableElement> movies) {
+    private void createElements(String user, ArrayList<TableElement> movies) {
         elementsTable = createFilmsTable(movies);
         userLabel = createLabel("User: " + user);
         nextPageButton = createNextPageButton();
