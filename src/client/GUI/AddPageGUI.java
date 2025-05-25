@@ -499,7 +499,7 @@ public class AddPageGUI {
             elementFields.put("Operator_Eye", DataForMovie.colorNames[index].toUpperCase());
         }
         catch (Exception e) {
-            elementFields.put("Genre", operatorEyeColor.getText());
+            elementFields.put("Operator_Eye", operatorEyeColor.getText());
         }
         try {
             int index = Integer.parseInt(operatorHairColor.getText());
