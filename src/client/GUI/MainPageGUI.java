@@ -3,6 +3,7 @@ package client.GUI;
 import client.Client;
 import client.ClientRequestSender;
 import client.ClientResponseReceiver;
+import client.LangManager;
 import client.custom_gui_elements.MovieTableModel;
 import client.dataStorage.CollectionView;
 import client.dataStorage.CurrentMovie;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
  * */
 public class MainPageGUI {
     public static final Dimension WINDOW_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final String TITLE = "Collection Viewer";
+    public static  String TITLE = LangManager.get("title");
 
     public static final Dimension LABEL_SIZE = new Dimension(400, 40);
 
@@ -29,9 +30,10 @@ public class MainPageGUI {
 
     public static final Dimension MENU_PANEL_SIZE = new Dimension(200, 200);
 
-    public static final String SORTING_MENU_LABEL = "Sorting menu";
-    public static final String FILTERS_MENU_LABEL = "Filters menu";
-    public static final Dimension SMALL_LABEL_SIZE = new Dimension(200, 20);
+    public static String SORTING_MENU_LABEL =  LangManager.get("sorting.menu");
+    public static String FILTERS_MENU_LABEL =  LangManager.get("filters.menu");
+    public static String LANGUAGE_MENU_LABEL = LangManager.get("language.menu.label");
+    public static Dimension SMALL_LABEL_SIZE = new Dimension(200, 20);
     public static final String[] SORTING_AND_FILTERING_PARAMETERS = {
             "id",
             "name",
@@ -54,18 +56,21 @@ public class MainPageGUI {
             "location z",
             "location name"
             };
-
+    public static final String[] LANGUAGE_PARAMETERS = {
+    		"english",
+    		"русский"
+    };
     public static final Dimension MENU_SIZE = new Dimension(200, 100);
 
     public static final Dimension TABLE_SIZE = new Dimension((int)WINDOW_SIZE.getWidth()/5 * 2, (int)WINDOW_SIZE.getHeight()/3 * 2);
 
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
-    public static final String NEXT_PAGE_BUTTON_TITLE = "Next";
-    public static final String SORT_BUTTON_TITLE = "Sort";
-    public static final String FILTERS_BUTTON_TITLE = "Filter";
-    public static final String FILTER_HINT = "><= *value*";
-    public static final String ADD_BUTTON_TITLE = "Add";
-
+    public static String NEXT_PAGE_BUTTON_TITLE = LangManager.get("next.page.button.title");
+    public static String SORT_BUTTON_TITLE = LangManager.get("sort.button.title");
+    public static String FILTERS_BUTTON_TITLE = LangManager.get("filters.button.title");;
+    public static String FILTER_HINT = LangManager.get("filter.hint");
+    public static String ADD_BUTTON_TITLE = LangManager.get("add.button.title");
+    public static String LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
     public static final int VERTICAL_STRUT = 20;
     public static final int SMALL_VERTICAL_STRUT = 5;
     public static final int HORIZONTAL_STRUT = 10;
@@ -84,21 +89,47 @@ public class MainPageGUI {
     private SortingHandler sortingHandler;
     private FilterHandler filterHandler;
     private InfoHandler infoHandler;
+    private UpdateCollectionHandler updateCollectionHandler;
     private JButton addButton;
-
+    private JPanel languageMenu;
+    private String currentUser;
+    private ArrayList<TableElement> savedElements;
     
     public MainPageGUI(String user, ArrayList<TableElement> elements) {
         window = new JFrame(TITLE);
         window.setSize(WINDOW_SIZE);
         window.setLayout(new BorderLayout(10, 10));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.userLabel = createLabel("User: ");
-        elementsTable = createFilmsTable(elements);
-        this.userLabel = createLabel("User: " + user);
         nextPageButton = createNextPageButton();
         sortingMenu = createSortingMenu();
         filtersMenu = createFiltersMenu();
         addButton = createAddButton();
+        languageMenu = createLanguageMenu();
+        currentUser = user;
+        savedElements = elements;
+
+        createElements(currentUser, savedElements);
+    }
+    
+    public void createElements(String user, ArrayList<TableElement> movies) {
+        elementsTable = createFilmsTable(movies);
+        userLabel = createLabel("User: " + user);
+        nextPageButton = createNextPageButton();
+        sortingMenu = createSortingMenu();
+        filtersMenu = createFiltersMenu();
+        addButton = createAddButton();
+    }
+
+    public void repaint() {
+        window.setVisible(false);
+        window.getContentPane().removeAll();
+        savedElements = ((MovieTableModel) elementsTable.getModel()).getMovies();
+        createElements(currentUser, savedElements);
+        createAndShowWindow();
+        
+        window.getContentPane().revalidate();
+        window.getContentPane().repaint();
+        
     }
     
     /**
@@ -290,8 +321,8 @@ public class MainPageGUI {
         userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel.add(userPanel);
 
-         JScrollPane scrollTable = new JScrollPane(elementsTable);
-         scrollTable.setPreferredSize(TABLE_SIZE);
+        JScrollPane scrollTable = new JScrollPane(elementsTable);
+        scrollTable.setPreferredSize(TABLE_SIZE);
         JPanel tp = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         tp.add(scrollTable);
         tp.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -320,6 +351,8 @@ public class MainPageGUI {
         menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
         menusPanel.add(filtersMenu);
         menusPanel.add(sortingMenu);
+        menusPanel.add(languageMenu);
+        
         menusPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         rightPanel.add(menusPanel);
@@ -330,8 +363,63 @@ public class MainPageGUI {
         window.setVisible(true);
      }
      
+
+     private JPanel createLanguageMenu() {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+         JLabel label = new JLabel();
+         label.setText(LANGUAGE_MENU_LABEL);
+         label.setPreferredSize(SMALL_LABEL_SIZE);
+
+         JComboBox<String> menu = new JComboBox<>(LANGUAGE_PARAMETERS);
+         menu.setPreferredSize(new Dimension(100, 100));//
+
+         JButton button = new JButton();
+         button.setText(LANGUAGE_BUTTON_TITLE);
+         button.setPreferredSize(BUTTON_SIZE);
+         button.setBackground(BUTTON_COLOR);
+         button.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+            	 LangManager.setLanguage((String) menu.getSelectedItem());
+            	 setLanguageMainPage();
+            	 window.revalidate();
+            	 repaint();
+
+             }
+         });
+
+         panel.add(button);
+         panel.add(Box.createVerticalStrut(SMALL_VERTICAL_STRUT));
+         panel.add(label);
+         panel.add(Box.createVerticalStrut(SMALL_VERTICAL_STRUT));
+         panel.add(Box.createRigidArea(new Dimension((int) TEXT_FIELD_SIZE.getWidth(), (int) TEXT_FIELD_SIZE.getHeight())));
+         panel.add(Box.createVerticalStrut(SMALL_VERTICAL_STRUT));
+         panel.add(menu);
+         panel.add(Box.createVerticalGlue());
+
+         return panel;
+     }
+  
+
+    public void refreshTable() {
+    	 ArrayList<TableElement> elements = updateCollectionHandler.updateCollection();
+         ((MovieTableModel) elementsTable.getModel()).updateMovies(elements);
+         ((MovieTableModel) elementsTable.getModel()).fireTableDataChanged();
+    }
     
-    
+    public void setLanguageMainPage() {
+    	TITLE = LangManager.get("title");
+    	SORTING_MENU_LABEL =  LangManager.get("sorting.menu");
+        FILTERS_MENU_LABEL =  LangManager.get("filters.menu");
+        LANGUAGE_MENU_LABEL = LangManager.get("language.menu.label");
+        SORT_BUTTON_TITLE = LangManager.get("sort.button.title");
+        FILTERS_BUTTON_TITLE = LangManager.get("filters.button.title");;
+        FILTER_HINT = LangManager.get("filter.hint");
+        ADD_BUTTON_TITLE = LangManager.get("add.button.title");
+        LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
+    }
     public void setNextPageHandler(NextPageHandler nextPageHandler) {
         this.nextPageHandler = nextPageHandler;
     }
@@ -347,4 +435,8 @@ public class MainPageGUI {
     public void setInfoHandler(InfoHandler infoHandler) {
     	this.infoHandler = infoHandler;
     }
+
+	public void setUpdateCollectionHandler(UpdateCollectionHandler updateCollectionHandler) {
+		this.updateCollectionHandler = updateCollectionHandler;
+	}
 }
