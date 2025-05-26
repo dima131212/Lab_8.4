@@ -1,15 +1,22 @@
 package client.GUI;
 
+import client.dataStorage.DataForMovie;
+import client.eventHandlers.AddHandler;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddPageGUI {
 
     public static final int VERTICAL_STRUT = 5;
+    public static final int BIG_VERTICAL_STRUT = 10;
 
-    public static final String ID_HINT = "id";
     public static final String NAME_HINT = "name";
     public static final String COORDINATE_X_HINT = "X";
     public static final String COORDINATE_Y_HINT = "Y";
@@ -18,12 +25,17 @@ public class AddPageGUI {
     public static final String USA_BOX_OFFICE_HINT = "usa box office";
     public static final String GENRE_HINT = "genre";
     public static final String OPERATOR_NAME_HINT = "operator name";
-    public static final String OPERATOR_PASSPORT_ID_HINT = "operator passport id";
+    public static final String OPERATOR_HEIGHT_HINT = "operator height";
+    public static final String OPERATOR_EYE_COLOR_HINT = "operator eye color";
+    public static final String OPERATOR_HAIR_COLOR_HINT = "operator hair color";
+    public static final String OPERATOR_NATIONALITY_HINT = "operator nationality";
     public static final String OPERATOR_LOCATION_X_HINT = "operator location X";
     public static final String OPERATOR_LOCATION_Y_HINT = "operator location Y";
     public static final String OPERATOR_LOCATION_Z_HINT = "operator location Z";
+    public static final String LOCATION_NAME_HINT = "location name";
 
     public static final String BUTTON_TEXT = "Add";
+    public static final String WINDOW_TITLE = "Adding element";
 
     public static final Dimension WINDOW_SIZE = new Dimension(300, 500);
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
@@ -33,7 +45,6 @@ public class AddPageGUI {
     public static final Color TEXT_COLOR = Color.BLACK;
     public static final Color BUTTON_COLOR = new Color(0, 169, 255);
 
-    private JTextField idTextField;
     private JTextField nameTextField;
     private JTextField coordinateX;
     private JTextField coordinateY;
@@ -42,52 +53,50 @@ public class AddPageGUI {
     private JTextField usaBoxOffice;
     private JTextField genre;
     private JTextField operatorName;
-    private JTextField operatorPassportID;
+    private JTextField operatorHeight;
+    private JTextField operatorEyeColor;
+    private JTextField operatorHairColor;
+    private JTextField operatorNationality;
     private JTextField operatorLocationX;
     private JTextField operatorLocationY;
     private JTextField operatorLocationZ;
+    private JTextField locationName;
     private JButton button;
     private JDialog window;
+    private AddHandler addHandler;
 
     public AddPageGUI() {
         window = new JDialog();
         window.setModal(true);
         window.setSize(WINDOW_SIZE);
+        window.setTitle(WINDOW_TITLE);
 
+        createAddButton();
+        createTextFields();
+    }
+
+    private void createAddButton() {
         button = new JButton();
         button.setPreferredSize(BUTTON_SIZE);
         button.setMaximumSize(BUTTON_SIZE);
         button.setBackground(BUTTON_COLOR);
         button.setText(BUTTON_TEXT);
-
-        idTextField = new JTextField();
-        idTextField.setPreferredSize(TEXT_FIELD_SIZE);
-        idTextField.setMaximumSize(TEXT_FIELD_SIZE);
-        idTextField.setText(ID_HINT);
-        idTextField.setForeground(HINT_COLOR);
-        idTextField.addFocusListener(new FocusAdapter() {
+        button.addActionListener(new ActionListener() {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (idTextField.getText().equals(ID_HINT)) {
-                    idTextField.setText("");
-                    idTextField.setForeground(TEXT_COLOR);
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (idTextField.getText().isEmpty()) {
-                    idTextField.setText(ID_HINT);
-                    idTextField.setForeground(HINT_COLOR);
-                }
+            public void actionPerformed(ActionEvent e) {
+                Map<String, Object> elementFields = collectData();
+                addHandler.add(elementFields);
             }
         });
+    }
 
+    private void createTextFields() {
         nameTextField = new JTextField();
         nameTextField.setPreferredSize(TEXT_FIELD_SIZE);
         nameTextField.setMaximumSize(TEXT_FIELD_SIZE);
         nameTextField.setText(NAME_HINT);
         nameTextField.setForeground(HINT_COLOR);
+        nameTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
         nameTextField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -111,6 +120,7 @@ public class AddPageGUI {
         coordinateX.setMaximumSize(TEXT_FIELD_SIZE);
         coordinateX.setText(COORDINATE_X_HINT);
         coordinateX.setForeground(HINT_COLOR);
+        coordinateX.setAlignmentX(Component.CENTER_ALIGNMENT);
         coordinateX.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -128,8 +138,6 @@ public class AddPageGUI {
                 }
             }
         });
-<<<<<<< Updated upstream
-=======
 
         coordinateY = new JTextField();
         coordinateY.setPreferredSize(TEXT_FIELD_SIZE);
@@ -513,27 +521,70 @@ public class AddPageGUI {
         elementFields.put("Location_Name", locationName.getText());
 
         return elementFields;
->>>>>>> Stashed changes
     }
 
     public void createAndShowWindow() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        idTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
         nameTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
         coordinateX.setAlignmentX(Component.CENTER_ALIGNMENT);
+        coordinateY.setAlignmentX(Component.CENTER_ALIGNMENT);
+        oscarsCount.setAlignmentX(Component.CENTER_ALIGNMENT);
+        totalBoxOffice.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usaBoxOffice.setAlignmentX(Component.CENTER_ALIGNMENT);
+        genre.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorName.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorHeight.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorEyeColor.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorHairColor.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorNationality.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorLocationX.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorLocationY.setAlignmentX(Component.CENTER_ALIGNMENT);
+        operatorLocationZ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        locationName.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        panel.add(idTextField);
         panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
         panel.add(nameTextField);
         panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
         panel.add(coordinateX);
         panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(coordinateY);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(oscarsCount);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(totalBoxOffice);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(usaBoxOffice);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(genre);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorName);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorHeight);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorEyeColor);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorHairColor);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorNationality);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorLocationX);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorLocationY);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(operatorLocationZ);
+        panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
+        panel.add(locationName);
+        panel.add(Box.createVerticalStrut(BIG_VERTICAL_STRUT));
         panel.add(button);
 
         window.add(panel);
         window.setVisible(true);
+    }
+
+    public void setAddHandler(AddHandler addHandler) {
+        this.addHandler = addHandler;
     }
 }

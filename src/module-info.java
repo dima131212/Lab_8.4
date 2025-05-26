@@ -4,8 +4,8 @@
 /**
  * 
  */
-module Lab8Git {
-	requires jdk.compiler;
-	requires java.sql;
+module Lab8 {
 	requires java.desktop;
+	requires java.sql;
+	requires jdk.compiler;
 }
