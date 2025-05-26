@@ -1,19 +1,20 @@
 package client.GUI;
 
 import client.Client;
-import client.ClientRequestSender;
-import client.ClientResponseReceiver;
 import client.LangManager;
 import client.custom_gui_elements.MovieTableModel;
 import client.dataStorage.CollectionView;
-import client.dataStorage.CurrentMovie;
 import client.eventHandlers.*;
 import client.other.TableElement;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *The {@code GUI.MainPageGui} describes GUI of main page in Collection Viewer from {@code ProgrammingLab8}.
@@ -58,7 +59,10 @@ public class MainPageGUI {
             };
     public static final String[] LANGUAGE_PARAMETERS = {
     		"english",
-    		"русский"
+    		"русский",
+    		"český",
+    		"українська",
+    		"español"
     };
     public static final Dimension MENU_SIZE = new Dimension(200, 100);
 
@@ -71,6 +75,7 @@ public class MainPageGUI {
     public static String FILTER_HINT = LangManager.get("filter.hint");
     public static String ADD_BUTTON_TITLE = LangManager.get("add.button.title");
     public static String LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
+    public static String USER_TITLE = LangManager.get("user.title");
     public static final int VERTICAL_STRUT = 20;
     public static final int SMALL_VERTICAL_STRUT = 5;
     public static final int HORIZONTAL_STRUT = 10;
@@ -95,6 +100,9 @@ public class MainPageGUI {
     private String currentUser;
     private ArrayList<TableElement> savedElements;
     
+    private JLabel clockLabel;
+    private Timer clockTimer;
+    
     public MainPageGUI(String user, ArrayList<TableElement> elements) {
         window = new JFrame(TITLE);
         window.setSize(WINDOW_SIZE);
@@ -113,11 +121,14 @@ public class MainPageGUI {
     
     public void createElements(String user, ArrayList<TableElement> movies) {
         elementsTable = createFilmsTable(movies);
-        userLabel = createLabel("User: " + user);
+        userLabel = createLabel(USER_TITLE + user);
         nextPageButton = createNextPageButton();
         sortingMenu = createSortingMenu();
         filtersMenu = createFiltersMenu();
+        languageMenu = createLanguageMenu();
         addButton = createAddButton();
+        clockLabel = createClockLabel(LangManager.getCurrentLocale());
+        
     }
 
     public void repaint() {
@@ -178,6 +189,7 @@ public class MainPageGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddPageGUI addPageGUI = new AddPageGUI();
+                addPageGUI.setAddHandler(new AddHandler(addPageGUI, Client.sender, Client.receiver));
                 addPageGUI.createAndShowWindow();
             }
         });
@@ -202,7 +214,7 @@ public class MainPageGUI {
                     String movie = infoHandler.info(CollectionView.getElement(row));
                     
                     ElementInfoPageGUI elementInfoPageGUI = new ElementInfoPageGUI(movie);
-                    DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI);
+                    DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI, Client.sender);
                     EditHandler editHandler = new EditHandler(elementInfoPageGUI);
                     elementInfoPageGUI.setEditHandler(editHandler);
                     elementInfoPageGUI.setDeleteHandler(deleteHandler);
@@ -316,7 +328,8 @@ public class MainPageGUI {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        JPanel userPanel = new JPanel(new GridLayout(2, 1));
+        userPanel.add(clockLabel);
         userPanel.add(userLabel);
         userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel.add(userPanel);
@@ -357,10 +370,18 @@ public class MainPageGUI {
 
         rightPanel.add(menusPanel);
         rightPanel.add(Box.createVerticalGlue());
-
+        
+        
+        
         window.add(leftPanel, BorderLayout.WEST);
         window.add(rightPanel, BorderLayout.CENTER);
         window.setVisible(true);
+        /**
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(userLabel, BorderLayout.WEST);
+        topPanel.add(clockLabel, BorderLayout.EAST);
+        panel.add(topPanel);
+        */
      }
      
 
@@ -413,13 +434,37 @@ public class MainPageGUI {
     	TITLE = LangManager.get("title");
     	SORTING_MENU_LABEL =  LangManager.get("sorting.menu");
         FILTERS_MENU_LABEL =  LangManager.get("filters.menu");
+        NEXT_PAGE_BUTTON_TITLE = LangManager.get("next.page.button.title");
         LANGUAGE_MENU_LABEL = LangManager.get("language.menu.label");
         SORT_BUTTON_TITLE = LangManager.get("sort.button.title");
         FILTERS_BUTTON_TITLE = LangManager.get("filters.button.title");;
         FILTER_HINT = LangManager.get("filter.hint");
         ADD_BUTTON_TITLE = LangManager.get("add.button.title");
         LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
+        USER_TITLE = LangManager.get("user.title");
     }
+    
+    
+    private JLabel createClockLabel(Locale locale) {
+        JLabel label = new JLabel();
+        label.setPreferredSize(new Dimension(200, 20));
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter
+                .ofLocalizedDateTime(FormatStyle.MEDIUM) 
+                .withLocale(locale);
+
+        Timer clockTimer = new Timer(1000, e -> {
+            LocalDateTime now = LocalDateTime.now();
+            String formattedTime = now.format(timeFormatter);
+            label.setText(formattedTime);
+        });
+        clockTimer.start();
+
+        return label;
+    }
+
+    
     public void setNextPageHandler(NextPageHandler nextPageHandler) {
         this.nextPageHandler = nextPageHandler;
     }

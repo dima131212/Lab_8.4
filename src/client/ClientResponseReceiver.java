@@ -54,6 +54,7 @@ public class ClientResponseReceiver {
 			System.out.println(response);
 		}
 		else if(response.equals("ОбновленияЕсть")) {
+			
 			System.out.println(response);
 			Client.mainPageGUI.refreshTable();
 		}

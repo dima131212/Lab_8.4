@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.util.*;
 
+import client.GUI.AddPageGUI;
 import client.GUI.MainPageGUI;
 import client.GUI.RegistrationPageGUI;
 import client.dataInput.DataInput;
@@ -29,7 +30,9 @@ public class Client {
     static CheckInput checkInput = new CheckInput();
     public static CurrentClient currentClient;
     public static Long pageCounter = 1L;
-    
+    public static  ClientResponseReceiver receiver;
+    public static ClientRequestSender sender;
+    public static MainPageGUI mainPageGUI;
     @SuppressWarnings("unchecked")
 	public static void main(String[] args) {
         CommandParser commandParser = new CommandParser();
@@ -38,14 +41,15 @@ public class Client {
         try {
         	ClientConnection connection = new ClientConnection();
         	connection.connect(SERVER_HOST, SERVER_PORT);
-        	ClientRequestSender sender = new ClientRequestSender(connection.getOut());
-            ClientResponseReceiver receiver = new ClientResponseReceiver(connection.getIn());
-            String input;
-
+            sender = new ClientRequestSender(connection.getOut());
+            receiver = new ClientResponseReceiver(connection.getIn());
             RegistrationPageGUI registrationPageGUI = new RegistrationPageGUI();
             RegistrationHandler registrationHandler = new RegistrationHandler(registrationPageGUI, sender, receiver);
             LoginHandler loginHandler = new LoginHandler(registrationPageGUI, sender, receiver);
 
+            
+            
+            
             registrationPageGUI.setRegistrationHandler(registrationHandler);
             registrationPageGUI.setLoginHandler(loginHandler);
 
@@ -61,12 +65,13 @@ public class Client {
             LangManager.setLanguage("english");
             
             ArrayList<TableElement> tableElements = PageParser.parsePage((String) receiver.getData());
-            MainPageGUI mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
+            mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);
             FilterHandler filterHandler = new FilterHandler(mainPageGUI, sender, receiver);
             InfoHandler infoHandler = new InfoHandler(sender);
             UpdateCollectionHandler updateCollectionHandler = new UpdateCollectionHandler(sender);
+            
             mainPageGUI.setNextPageHandler(nextPageHandler);
             mainPageGUI.setSortingHandler(sortingHandler);
             mainPageGUI.setFilterHandler(filterHandler);

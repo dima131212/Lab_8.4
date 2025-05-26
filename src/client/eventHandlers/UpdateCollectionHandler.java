@@ -19,7 +19,7 @@ public class UpdateCollectionHandler {
 		try {
 			ArrayList<TableElement> elements = new ArrayList<>();
 			sender.send(new Object[]{"load_next_page", new Object[]{Client.pageCounter}, Client.currentClient.getUserName(), Client.currentClient.getUserPassword()});
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Map<Long, String> response = CollectionView.getMovieView();
 			for(Long id: response.keySet()) {
 				elements.add(new TableElement(id, response.get(id)));

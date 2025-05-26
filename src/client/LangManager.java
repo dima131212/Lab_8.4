@@ -11,6 +11,9 @@ public class LangManager {
     	{
     		put("русский", "ru");
     		put("english", "en");
+    		put("český", "cs");
+    		put("українська", "uk");
+    		put("español", "es-HN");
     	}
     };
     public static void setLanguage(String lang) {
@@ -21,8 +24,15 @@ public class LangManager {
 
     public static String get(String key) {
         if (bundle == null) {
-            setLanguage("en"); // язык по умолчанию
+            setLanguage("en"); 
         }
         return bundle.getString(key);
+    }
+    
+    public static Locale getCurrentLocale() {
+        if (bundle == null) {
+            setLanguage("en"); 
+        }
+        return bundle.getLocale();
     }
 }
