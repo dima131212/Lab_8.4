@@ -1,12 +1,9 @@
 package client.GUI;
 
 import client.Client;
-import client.ClientRequestSender;
-import client.ClientResponseReceiver;
 import client.LangManager;
 import client.custom_gui_elements.MovieTableModel;
 import client.dataStorage.CollectionView;
-import client.dataStorage.CurrentMovie;
 import client.eventHandlers.*;
 import client.other.TableElement;
 
