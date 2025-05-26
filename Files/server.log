@@ -11172,3 +11172,37 @@ INFO: Получена команда от клиента: check_update_collecti
 INFO: Команда выполнена: check_update_collection
 мая 26, 2025 12:52:52 AM server.RequestHandler handleClient
 SEVERE: Ошибка при обработке клиента: Connection reset
+мая 26, 2025 8:40:11 PM server.Server main
+INFO: Сервер запускается...
+мая 26, 2025 8:40:48 PM server.Server main
+INFO: Сервер запускается...
+мая 26, 2025 8:40:48 PM server.ConnectionHandler <init>
+INFO: Сервер запущен на порту 2348
+мая 26, 2025 8:40:48 PM server.ConnectionHandler acceptClient
+INFO: Принято новое подключение от клиента: 
+мая 26, 2025 8:40:55 PM server.Server main
+INFO: Подключился новый клиент: /127.0.0.1:50253
+мая 26, 2025 8:40:55 PM server.ConnectionHandler acceptClient
+INFO: Принято новое подключение от клиента: 
+мая 26, 2025 8:41:10 PM server.RequestHandler handleClient
+INFO: Список команд отправлен клиенту.
+мая 26, 2025 8:41:10 PM server.RequestHandler handleClient
+INFO: Фабрика данных отправлена клиенту.
+мая 26, 2025 8:41:10 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: load_next_page
+мая 26, 2025 8:41:10 PM server.RequestHandler lambda$handleClient$0
+INFO: Команда выполнена: load_next_page
+мая 26, 2025 8:41:10 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 26, 2025 8:41:10 PM server.RequestHandler lambda$handleClient$0
+INFO: Команда выполнена: check_update_collection
+мая 26, 2025 8:41:12 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 26, 2025 8:41:12 PM server.RequestHandler lambda$handleClient$0
+INFO: Команда выполнена: check_update_collection
+мая 26, 2025 8:41:14 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 26, 2025 8:41:14 PM server.RequestHandler lambda$handleClient$0
+INFO: Команда выполнена: check_update_collection
+мая 26, 2025 8:41:15 PM server.RequestHandler handleClient
+SEVERE: Ошибка при обработке клиента: Connection reset
