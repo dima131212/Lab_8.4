@@ -210,8 +210,7 @@ public class MainPageGUI {
                 if (row >= 0) {
                     TableElement selectedMovie = ((MovieTableModel) table.getModel()).getMovieAt(row);
                     //CurrentMovie movie = sender.send(new Object[]{"load_next_sorted_page", new Object[]{Client.pageCounter}, Client.currentClient.getUserName(), Client.currentClient.getUserPassword()});
-                    
-                    String movie = infoHandler.info(CollectionView.getElement(row));
+                    String movie = infoHandler.info(selectedMovie.getId());
                     
                     ElementInfoPageGUI elementInfoPageGUI = new ElementInfoPageGUI(movie);
                     DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI, Client.sender);

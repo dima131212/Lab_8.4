@@ -34,7 +34,7 @@ public class ElementInfoPageGUI {
 
     private EditHandler editHandler;
     private DeleteHandler deleteHandler;
-    private JFrame window;
+    private JDialog window;
     private JButton editButton;
     private JButton deleteButton;
     private JLabel label;
@@ -43,9 +43,10 @@ public class ElementInfoPageGUI {
 
     public ElementInfoPageGUI(String movie) {
         elementData = movie;
-        window = new JFrame(TITLE);
+        window = new JDialog();
+        window.setTitle(TITLE);
         window.setSize(INFO_WINDOW_SIZE);
-        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         editButton = createEditButton();
         deleteButton = createDeleteButton();
         label = createLabel();
@@ -99,7 +100,7 @@ public class ElementInfoPageGUI {
         JTextArea textArea = new JTextArea();
         textArea.setSize(INFO_TEXT_FIELD_SIZE);
         textArea.setMaximumSize(INFO_TEXT_FIELD_SIZE);
-        textArea.setText(elementData.toString());
+        textArea.setText(elementData);
         textArea.setEditable(false);
 
         return textArea;

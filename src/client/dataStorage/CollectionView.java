@@ -26,7 +26,7 @@ public class CollectionView {
 	}
 
 	static public Long getElement(int id) {
-		ArrayList<Long> keys = new ArrayList<>(CollectionView.getMovieView().keySet());
+		ArrayList<Long> keys = new ArrayList<>(movieView.keySet());
 	    if (id >= 0 && id < keys.size()) {
 	        return keys.get(id);
 	    } else {

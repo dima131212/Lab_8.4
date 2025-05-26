@@ -16,6 +16,7 @@ public class LangManager {
     		put("español", "es-HN");
     	}
     };
+
     public static void setLanguage(String lang) {
     	String langCode = language.get(lang);
     	Locale locale = Locale.forLanguageTag(langCode);
