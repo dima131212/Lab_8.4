@@ -24,7 +24,7 @@ public class ServerPoller {
             } catch (Exception e) {
                 System.err.println("Ошибка при опросе сервера: " + e.getMessage());
             }
-        }, 0, 2000, TimeUnit.MILLISECONDS);
+        }, 0, 1500, TimeUnit.MILLISECONDS);
     }
 
     public void stopPolling() {

@@ -1,5 +1,6 @@
 package client.GUI;
 
+import client.LangManager;
 import client.eventHandlers.DeleteHandler;
 import client.eventHandlers.EditHandler;
 
@@ -15,16 +16,16 @@ import java.awt.event.ActionListener;
  * */
 public class ElementInfoPageGUI {
     public static final Dimension INFO_WINDOW_SIZE = new Dimension(300, 600);
-    public static final String TITLE = "Element Info";
+    public static String TITLE = LangManager.get("info.page.title");
 
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
-    public static final String BUTTON_EDIT_TITLE = "Edit";
-    public static final String BUTTON_DELETE_TITLE = "Delete";
+    public static String BUTTON_EDIT_TITLE = LangManager.get("button.edit.title");
+    public static String BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
 
     public static final Dimension INFO_TEXT_FIELD_SIZE = new Dimension(250, 200);
 
     public static final Dimension LABEL_SIZE = new Dimension(175, 20);
-    public static final String LABEL_TEXT = "Element Info";
+    public static String LABEL_TEXT =  LangManager.get("info.page.title");
 
     public static final int VERTICAL_STRUT = 20;
     public static final int HORIZONTAL_STRUT = 10;
@@ -122,6 +123,7 @@ public class ElementInfoPageGUI {
      * Method which creates element info window and shows it
      */
     public void createAndShowWindow() {
+    	setLanguageInfoPage();
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JPanel buttonPanel = new JPanel();
@@ -144,7 +146,12 @@ public class ElementInfoPageGUI {
         window.add(panel);
         window.setVisible(true);
     }
-
+    public void setLanguageInfoPage() {
+    	TITLE = LangManager.get("info.page.title");
+        BUTTON_EDIT_TITLE = LangManager.get("button.edit.title");
+        BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
+        LABEL_TEXT =  LangManager.get("info.page.title");
+    }
     public void setEditHandler(EditHandler editHandler) {
         this.editHandler = editHandler;
     }

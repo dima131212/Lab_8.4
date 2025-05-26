@@ -1,5 +1,6 @@
 package client.GUI;
 
+import client.LangManager;
 import client.dataStorage.DataForMovie;
 import client.eventHandlers.AddHandler;
 
@@ -34,8 +35,8 @@ public class AddPageGUI {
     public static final String OPERATOR_LOCATION_Z_HINT = "operator location Z";
     public static final String LOCATION_NAME_HINT = "location name";
 
-    public static final String BUTTON_TEXT = "Add";
-    public static final String WINDOW_TITLE = "Adding element";
+    public static String BUTTON_TEXT = LangManager.get("add.button.title");
+    public static String WINDOW_TITLE = LangManager.get("add.window.title");
 
     public static final Dimension WINDOW_SIZE = new Dimension(300, 500);
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
@@ -524,6 +525,7 @@ public class AddPageGUI {
     }
 
     public void createAndShowWindow() {
+    	setLanguageAddPage();
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -583,7 +585,10 @@ public class AddPageGUI {
         window.add(panel);
         window.setVisible(true);
     }
-
+    public void setLanguageAddPage() {
+    	BUTTON_TEXT = LangManager.get("add.button.title");
+        WINDOW_TITLE = LangManager.get("add.window.title");
+    }
     public void setAddHandler(AddHandler addHandler) {
         this.addHandler = addHandler;
     }

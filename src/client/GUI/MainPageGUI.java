@@ -10,7 +10,11 @@ import client.other.TableElement;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *The {@code GUI.MainPageGui} describes GUI of main page in Collection Viewer from {@code ProgrammingLab8}.
@@ -55,7 +59,10 @@ public class MainPageGUI {
             };
     public static final String[] LANGUAGE_PARAMETERS = {
     		"english",
-    		"русский"
+    		"русский",
+    		"český",
+    		"українська",
+    		"español"
     };
     public static final Dimension MENU_SIZE = new Dimension(200, 100);
 
@@ -68,6 +75,7 @@ public class MainPageGUI {
     public static String FILTER_HINT = LangManager.get("filter.hint");
     public static String ADD_BUTTON_TITLE = LangManager.get("add.button.title");
     public static String LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
+    public static String USER_TITLE = LangManager.get("user.title");
     public static final int VERTICAL_STRUT = 20;
     public static final int SMALL_VERTICAL_STRUT = 5;
     public static final int HORIZONTAL_STRUT = 10;
@@ -92,6 +100,9 @@ public class MainPageGUI {
     private String currentUser;
     private ArrayList<TableElement> savedElements;
     
+    private JLabel clockLabel;
+    private Timer clockTimer;
+
     public MainPageGUI(String user, ArrayList<TableElement> elements) {
         window = new JFrame(TITLE);
         window.setSize(WINDOW_SIZE);
@@ -110,11 +121,14 @@ public class MainPageGUI {
 
     public void createElements(String user, ArrayList<TableElement> movies) {
         elementsTable = createFilmsTable(movies);
-        userLabel = createLabel("User: " + user);
+        userLabel = createLabel(USER_TITLE + user);
         nextPageButton = createNextPageButton();
         sortingMenu = createSortingMenu();
         filtersMenu = createFiltersMenu();
+        languageMenu = createLanguageMenu();
         addButton = createAddButton();
+        clockLabel = createClockLabel(LangManager.getCurrentLocale());
+
     }
 
     public void repaint() {
@@ -200,7 +214,7 @@ public class MainPageGUI {
                     String movie = infoHandler.info(CollectionView.getElement(row));
                     
                     ElementInfoPageGUI elementInfoPageGUI = new ElementInfoPageGUI(movie);
-                    DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI);
+                    DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI, Client.sender);
                     EditHandler editHandler = new EditHandler(elementInfoPageGUI);
                     elementInfoPageGUI.setEditHandler(editHandler);
                     elementInfoPageGUI.setDeleteHandler(deleteHandler);
@@ -308,57 +322,66 @@ public class MainPageGUI {
     }
 
      public void createAndShowWindow() {
-         JPanel leftPanel = new JPanel(new BorderLayout(0, VERTICAL_STRUT));
-         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel leftPanel = new JPanel(new BorderLayout(0, VERTICAL_STRUT));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-         JPanel panel = new JPanel();
-         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-         JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-         userPanel.add(userLabel);
-         userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-         panel.add(userPanel);
+        JPanel userPanel = new JPanel(new GridLayout(2, 1));
+        userPanel.add(clockLabel);
+        userPanel.add(userLabel);
+        userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(userPanel);
 
         JScrollPane scrollTable = new JScrollPane(elementsTable);
         scrollTable.setPreferredSize(TABLE_SIZE);
-         JPanel tp = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-         tp.add(scrollTable);
-         tp.setAlignmentX(Component.LEFT_ALIGNMENT);
-         panel.add(tp);
+        JPanel tp = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        tp.add(scrollTable);
+        tp.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(tp);
 
-         JPanel buttonPanel = new JPanel();
-         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-         buttonPanel.add(nextPageButton);
-         buttonPanel.add(Box.createHorizontalStrut(HORIZONTAL_STRUT));
-         buttonPanel.add(addButton);
-         buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-         panel.add(buttonPanel);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.add(nextPageButton);
+        buttonPanel.add(Box.createHorizontalStrut(HORIZONTAL_STRUT));
+        buttonPanel.add(addButton);
+        buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(buttonPanel);
 
-         leftPanel.add(panel, BorderLayout.CENTER);
+        leftPanel.add(panel, BorderLayout.CENTER);
 
-         JPanel rightPanel = new JPanel();
-         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10));
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10));
 
-         sortingMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
-         sortingMenu.setPreferredSize(MENU_PANEL_SIZE);
-         filtersMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
-         filtersMenu.setPreferredSize(MENU_PANEL_SIZE);
+        sortingMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
+        sortingMenu.setPreferredSize(MENU_PANEL_SIZE);
+        filtersMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
+        filtersMenu.setPreferredSize(MENU_PANEL_SIZE);
 
-         JPanel menusPanel = new JPanel();
-         menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
-         menusPanel.add(filtersMenu);
-         menusPanel.add(sortingMenu);
-         menusPanel.add(languageMenu);
-
+        JPanel menusPanel = new JPanel();
+        menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        menusPanel.add(filtersMenu);
+        menusPanel.add(sortingMenu);
+        menusPanel.add(languageMenu);
+        
         menusPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-         rightPanel.add(menusPanel);
-         rightPanel.add(Box.createVerticalGlue());
+        rightPanel.add(menusPanel);
+        rightPanel.add(Box.createVerticalGlue());
 
-         window.add(leftPanel, BorderLayout.WEST);
-         window.add(rightPanel, BorderLayout.CENTER);
-         window.setVisible(true);
+
+
+        window.add(leftPanel, BorderLayout.WEST);
+        window.add(rightPanel, BorderLayout.CENTER);
+        window.setVisible(true);
+        /**
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(userLabel, BorderLayout.WEST);
+        topPanel.add(clockLabel, BorderLayout.EAST);
+        panel.add(topPanel);
+        */
      }
      
 
@@ -411,13 +434,37 @@ public class MainPageGUI {
     	TITLE = LangManager.get("title");
     	SORTING_MENU_LABEL =  LangManager.get("sorting.menu");
         FILTERS_MENU_LABEL =  LangManager.get("filters.menu");
+        NEXT_PAGE_BUTTON_TITLE = LangManager.get("next.page.button.title");
         LANGUAGE_MENU_LABEL = LangManager.get("language.menu.label");
         SORT_BUTTON_TITLE = LangManager.get("sort.button.title");
         FILTERS_BUTTON_TITLE = LangManager.get("filters.button.title");;
         FILTER_HINT = LangManager.get("filter.hint");
         ADD_BUTTON_TITLE = LangManager.get("add.button.title");
         LANGUAGE_BUTTON_TITLE = LangManager.get("language.button.label");
+        USER_TITLE = LangManager.get("user.title");
     }
+
+
+    private JLabel createClockLabel(Locale locale) {
+        JLabel label = new JLabel();
+        label.setPreferredSize(new Dimension(200, 20));
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter
+                .ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .withLocale(locale);
+
+        Timer clockTimer = new Timer(1000, e -> {
+            LocalDateTime now = LocalDateTime.now();
+            String formattedTime = now.format(timeFormatter);
+            label.setText(formattedTime);
+        });
+        clockTimer.start();
+
+        return label;
+    }
+
+
     public void setNextPageHandler(NextPageHandler nextPageHandler) {
         this.nextPageHandler = nextPageHandler;
     }
