@@ -11,9 +11,11 @@ import java.util.Map;
 public class CollectionView {
 
 	static private Map<Long, String> movieView = new LinkedHashMap<>();
+	static private Map<Integer, Long> movieCoordinates = new LinkedHashMap<>();
 	
-	public CollectionView(LinkedHashMap<Long, String> movieView) {
+	public CollectionView(LinkedHashMap<Long, String> movieView, LinkedHashMap<Integer, Long> movieCoordinates) {
 		setMovieView(movieView);
+		setMovieCoordinates(movieCoordinates);
 		
 	}
 
@@ -34,5 +36,13 @@ public class CollectionView {
 	        return null; // или выбрось исключение, если это критично
 	    }
 		
+	}
+
+	public static Map<Integer, Long> getMovieCoordinates() {
+		return movieCoordinates;
+	}
+
+	public static void setMovieCoordinates(Map<Integer, Long> movieCoordinates) {
+		CollectionView.movieCoordinates = movieCoordinates;
 	}
 }

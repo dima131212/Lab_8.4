@@ -1,14 +1,16 @@
 package client.other;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
-// класс не нужен так как эти задачи решает getresponse
+
 public class PageParser {
-    public static ArrayList<TableElement> parsePage(String response) {
+
+    public static List<Object> parsePage(String response) {
+        ArrayList<TableElement> elements = new ArrayList<>();
+        Map<Integer, Long> coordinates = new LinkedHashMap<>();
+
         if (response == null || response.trim().isEmpty()) {
-            return new ArrayList<>();
+            return List.of(elements, coordinates);
         }
 
         String dataToParse = response;
@@ -16,23 +18,31 @@ public class PageParser {
             dataToParse = dataToParse.substring("NextPage ".length());
         }
 
-        return Arrays.stream(dataToParse.split("\\R"))
+        List<String> lines = Arrays.stream(dataToParse.split("\\R"))
                 .map(String::trim)
                 .filter(line -> !line.isEmpty())
-                .map(line -> {
-                    String[] parts = line.split("\\s+", 2);
-                    if (parts.length == 2) {
-                        try {
-                            long id = Long.parseLong(parts[0]);
-                            String name = parts[1];
-                            return new TableElement(id, name);
-                        } catch (NumberFormatException e) {
-                            return null;
-                        }
-                    }
-                    return null;
-                })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .collect(Collectors.toList());
+
+        for (String line : lines) {
+            String[] parts = line.split(" ");
+            if (parts.length < 4) {
+                System.out.println("Invalid movie line: " + line);
+                continue;
+            }
+
+            try {
+                long id = Long.parseLong(parts[0]);
+                String name = parts[1];
+                int x = Integer.parseInt(parts[2]);
+                long y = Long.parseLong(parts[3]);
+
+                elements.add(new TableElement(id, name));
+                coordinates.put(x, y);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number in line: " + line);
+            }
+        }
+
+        return List.of(elements, coordinates);
     }
 }

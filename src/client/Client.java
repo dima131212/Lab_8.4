@@ -64,7 +64,11 @@ public class Client {
             //язык по умолчанию
             LangManager.setLanguage("english");
             
-            ArrayList<TableElement> tableElements = PageParser.parsePage((String) receiver.getData());
+            List<Object> dataMovie =  (List<Object>) PageParser.parsePage((String) receiver.getData());
+            ArrayList<TableElement> tableElements =(ArrayList<TableElement>) dataMovie.get(0);
+            LinkedHashMap<Integer, Long> coordinates = (LinkedHashMap<Integer, Long>) dataMovie.get(1);
+            CollectionView.setMovieCoordinates(coordinates);
+            
             mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);

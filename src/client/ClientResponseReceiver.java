@@ -22,28 +22,34 @@ public class ClientResponseReceiver {
     	    List<String> lines = List.of(response.split("\\n"));
 
     	    Map<Long, String> movieMap = new LinkedHashMap<>(); 
-
+    	    Map<Integer, Long> coordinates = new LinkedHashMap<>();
+    	    
     	    for (String line : lines) {
     	        line = line.trim();
     	        if (line.isEmpty()) continue;
 
-    	        int spaceIndex = line.indexOf(' ');
-    	        if (spaceIndex == -1) {
+    	        String[] parts = line.split(" ");
+    	        if (parts.length < 4) {
     	            System.out.println("Invalid movie line: " + line);
     	            continue;
     	        }
 
     	        try {
-    	            Long id = Long.parseLong(line.substring(0, spaceIndex));
-    	            String name = line.substring(spaceIndex + 1);
-
+    	            Long id = Long.parseLong(parts[0]);
+    	            String name = parts[1];
+    	            int x = Integer.parseInt(parts[2]);
+    	            long y = Long.parseLong(parts[3]);
+    	            
     	            movieMap.put(id, name);
+    	            coordinates.put(x, y);
     	        } catch (NumberFormatException e) {
-    	            System.out.println("Invalid id in line: " + line);
+    	            System.out.println("Invalid number in line: " + line);
     	        }
     	    }
     	    movieMap.forEach((id, name) -> System.out.println(id + " -> " + name));
+    	    coordinates.forEach((x,y) -> System.out.println(x + " , " + y));
 			CollectionView.setMovieView((LinkedHashMap<Long, String>) movieMap);
+			CollectionView.setMovieCoordinates(coordinates);
     	}
     	else if(response.startsWith("ThisMovie")) {
     		response = response.replaceFirst("ThisMovie\n", "");

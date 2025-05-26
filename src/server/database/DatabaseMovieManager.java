@@ -301,7 +301,9 @@ public class DatabaseMovieManager {
     public ArrayList<String> loadNextPage(Long arg) throws SQLException{ 
     	ArrayList<String> moviePage = new ArrayList<>();
     	String query = """
-    			SELECT id, name FROM movie ORDER BY id LIMIT ? OFFSET ?
+    			SELECT movie.id, movie.name, coordinates.x, coordinates.y FROM movie 
+    			JOIN coordinates ON coordinates.id = movie.coordinates_id
+    			ORDER BY id LIMIT ? OFFSET ?
     			""";
     	try(PreparedStatement stmt = connection.prepareStatement(query)){
     		stmt.setLong(1, 50);
@@ -310,7 +312,9 @@ public class DatabaseMovieManager {
     		 while (rs.next()) {
     	            Long id = rs.getLong("id");
     	            String name = rs.getString("name");
-    	            moviePage.add(id + " " + name);
+    	            Integer x =rs.getInt("x");
+    	            Long y =rs.getLong("y");
+    	            moviePage.add(id + " " + name + " " + x.toString() + " " + y.toString());
     	    }
     		return moviePage;
     	}
@@ -324,7 +328,7 @@ public class DatabaseMovieManager {
             throw new IllegalArgumentException("Недопустимый параметр сортировки: " + sortingParametr);
         }
     	String query = """
-    			SELECT movie.id, movie.name FROM movie 
+    			SELECT movie.id, movie.name, coordinates.x, coordinates.y FROM movie 
     			JOIN coordinates ON coordinates.id = movie.coordinates_id
     			JOIN person ON person.id = movie.operator_id
     			JOIN location ON location.id = person.location_id
@@ -336,9 +340,11 @@ public class DatabaseMovieManager {
     		stmt.setLong(2, (page-1)*50);
     		ResultSet rs = stmt.executeQuery();
     		while (rs.next()) {
-	            Long id = rs.getLong("id");
-	            String name = rs.getString("name");
-	            moviePage.add(id + " " + name);
+    			 Long id = rs.getLong("id");
+ 	            String name = rs.getString("name");
+ 	            Integer x =rs.getInt("x");
+ 	            Long y =rs.getLong("y");
+ 	            moviePage.add(id + " " + name + " " + x.toString() + " " + y.toString());
     		}
     		return moviePage;
     	}
@@ -356,7 +362,7 @@ public class DatabaseMovieManager {
             throw new IllegalArgumentException("Недопустимые параметры сортировки");
         }
     	String query = """
-    			SELECT movie.id, movie.name FROM movie 
+    			SELECT movie.id, movie.name, coordinates.x, coordinates.y  FROM movie 
     			JOIN coordinates ON coordinates.id = movie.coordinates_id
     			JOIN person ON person.id = movie.operator_id
     			JOIN location ON location.id = person.location_id
@@ -369,9 +375,11 @@ public class DatabaseMovieManager {
     		stmt.setLong(3, (page-1)*50);
     		ResultSet rs = stmt.executeQuery();
     		while (rs.next()) {
-	            Long id = rs.getLong("id");
-	            String name = rs.getString("name");
-	            moviePage.add(id + " " + name);
+    			Long id = rs.getLong("id");
+ 	            String name = rs.getString("name");
+ 	            Integer x =rs.getInt("x");
+ 	            Long y =rs.getLong("y");
+ 	            moviePage.add(id + " " + name + " " + x.toString() + " " + y.toString());
     		}
     		return moviePage;
     	}
