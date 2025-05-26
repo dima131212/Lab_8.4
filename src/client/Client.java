@@ -47,6 +47,9 @@ public class Client {
             RegistrationHandler registrationHandler = new RegistrationHandler(registrationPageGUI, sender, receiver);
             LoginHandler loginHandler = new LoginHandler(registrationPageGUI, sender, receiver);
 
+            
+            
+            
             registrationPageGUI.setRegistrationHandler(registrationHandler);
             registrationPageGUI.setLoginHandler(loginHandler);
 
@@ -57,11 +60,15 @@ public class Client {
             sender.send(new Object[]{"load_next_page", new Object[]{1L}, currentClient.getUserName(), currentClient.getUserPassword()});
             //new CollectionView((HashMap<Long, String>) receiver.getResponce());
             //System.out.println(receiver.getData());
-
+            
             //язык по умолчанию
             LangManager.setLanguage("english");
+            
+            List<Object> dataMovie =  (List<Object>) PageParser.parsePage((String) receiver.getData());
+            ArrayList<TableElement> tableElements =(ArrayList<TableElement>) dataMovie.get(0);
+            LinkedHashMap<Integer, Long> coordinates = (LinkedHashMap<Integer, Long>) dataMovie.get(1);
+            CollectionView.setMovieCoordinates(coordinates);
 
-            ArrayList<TableElement> tableElements = PageParser.parsePage((String) receiver.getData());
             mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);
