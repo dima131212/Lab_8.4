@@ -70,6 +70,8 @@ public class Client {
             mainPageGUI.setInfoHandler(infoHandler);
             mainPageGUI.createAndShowWindow();
 
+            mainPageGUI.repaint();
+
              
             ServerPoller serverPoller = new ServerPoller(sender, currentClient.getUserName(), currentClient.getUserPassword());
             serverPoller.startPolling();

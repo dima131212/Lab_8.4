@@ -297,55 +297,55 @@ public class MainPageGUI {
     }
 
      public void createAndShowWindow() {
-        JPanel leftPanel = new JPanel(new BorderLayout(0, VERTICAL_STRUT));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+         JPanel leftPanel = new JPanel(new BorderLayout(0, VERTICAL_STRUT));
+         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        userPanel.add(userLabel);
-        userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.add(userPanel);
+         JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+         userPanel.add(userLabel);
+         userPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+         panel.add(userPanel);
 
          JScrollPane scrollTable = new JScrollPane(elementsTable);
          scrollTable.setPreferredSize(TABLE_SIZE);
-        JPanel tp = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        tp.add(scrollTable);
-        tp.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.add(tp);
+         JPanel tp = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+         tp.add(scrollTable);
+         tp.setAlignmentX(Component.LEFT_ALIGNMENT);
+         panel.add(tp);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        buttonPanel.add(nextPageButton);
-        buttonPanel.add(Box.createHorizontalStrut(HORIZONTAL_STRUT));
-        buttonPanel.add(addButton);
-        buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.add(buttonPanel);
+         JPanel buttonPanel = new JPanel();
+         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+         buttonPanel.add(nextPageButton);
+         buttonPanel.add(Box.createHorizontalStrut(HORIZONTAL_STRUT));
+         buttonPanel.add(addButton);
+         buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+         panel.add(buttonPanel);
 
-        leftPanel.add(panel, BorderLayout.CENTER);
+         leftPanel.add(panel, BorderLayout.CENTER);
 
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10));
+         JPanel rightPanel = new JPanel();
+         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10));
 
-        sortingMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
-        sortingMenu.setPreferredSize(MENU_PANEL_SIZE);
-        filtersMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
-        filtersMenu.setPreferredSize(MENU_PANEL_SIZE);
+         sortingMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
+         sortingMenu.setPreferredSize(MENU_PANEL_SIZE);
+         filtersMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
+         filtersMenu.setPreferredSize(MENU_PANEL_SIZE);
 
-        JPanel menusPanel = new JPanel();
-        menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
-        menusPanel.add(filtersMenu);
-        menusPanel.add(sortingMenu);
-        menusPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+         JPanel menusPanel = new JPanel();
+         menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+         menusPanel.add(filtersMenu);
+         menusPanel.add(sortingMenu);
+         menusPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        rightPanel.add(menusPanel);
-        rightPanel.add(Box.createVerticalGlue());
+         rightPanel.add(menusPanel);
+         rightPanel.add(Box.createVerticalGlue());
 
-        window.add(leftPanel, BorderLayout.WEST);
-        window.add(rightPanel, BorderLayout.CENTER);
-        window.setVisible(true);
+         window.add(leftPanel, BorderLayout.WEST);
+         window.add(rightPanel, BorderLayout.CENTER);
+         window.setVisible(true);
      }
      
     
