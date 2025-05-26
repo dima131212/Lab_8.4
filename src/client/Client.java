@@ -32,7 +32,7 @@ public class Client {
     public static  ClientResponseReceiver receiver;
     public static ClientRequestSender sender;
     public static MainPageGUI mainPageGUI;
-    
+
     @SuppressWarnings("unchecked")
 	public static void main(String[] args) {
         CommandParser commandParser = new CommandParser();
@@ -58,21 +58,25 @@ public class Client {
             sender.send(new Object[]{"load_next_page", new Object[]{1L}, currentClient.getUserName(), currentClient.getUserPassword()});
             //new CollectionView((HashMap<Long, String>) receiver.getResponce());
             //System.out.println(receiver.getData());
+
+            //язык по умолчанию
+            LangManager.setLanguage("english");
+
             ArrayList<TableElement> tableElements = PageParser.parsePage((String) receiver.getData());
             mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);
             FilterHandler filterHandler = new FilterHandler(mainPageGUI, sender, receiver);
             InfoHandler infoHandler = new InfoHandler(sender);
+            UpdateCollectionHandler updateCollectionHandler = new UpdateCollectionHandler(sender);
             mainPageGUI.setNextPageHandler(nextPageHandler);
             mainPageGUI.setSortingHandler(sortingHandler);
             mainPageGUI.setFilterHandler(filterHandler);
             mainPageGUI.setInfoHandler(infoHandler);
+            mainPageGUI.setUpdateCollectionHandler(updateCollectionHandler);
             mainPageGUI.createAndShowWindow();
 
-            mainPageGUI.repaint();
 
-             
             ServerPoller serverPoller = new ServerPoller(sender, currentClient.getUserName(), currentClient.getUserPassword());
             serverPoller.startPolling();
             Thread listenerThread = new Thread(new ClientListener(receiver));

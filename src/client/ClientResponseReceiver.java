@@ -50,9 +50,12 @@ public class ClientResponseReceiver {
     		System.out.println(response);
     		parseMovie(response);
     	}
-		else if(response.equals("ОбновленийНеБыло")) {}
+		else if(response.equals("ОбновленийНеБыло")) {
+			System.out.println(response);
+		}
 		else if(response.equals("ОбновленияЕсть")) {
-			
+			System.out.println(response);
+			Client.mainPageGUI.refreshTable();
 		}
     	else {
     		System.out.println(response);
