@@ -5,5 +5,11 @@ package server.dataStorage;
  * 
  */
 public enum Color {
-    BLACK, BLUE, YELLOW, ORANGE, WHITE, RED, BROWN;
+    BLACK,
+    BLUE,
+    YELLOW,
+    ORANGE,
+    WHITE,
+    RED,
+    BROWN;
 }

@@ -19,7 +19,6 @@ import client.executeScript.ExecuteScript;
 import client.executeScript.FileStack;
 import client.other.PageParser;
 import client.other.TableElement;
-import com.sun.tools.javac.Main;
 
 
 public class Client {
@@ -68,14 +67,14 @@ public class Client {
             ArrayList<TableElement> tableElements =(ArrayList<TableElement>) dataMovie.get(0);
             LinkedHashMap<Integer, Long> coordinates = (LinkedHashMap<Integer, Long>) dataMovie.get(1);
             CollectionView.setMovieCoordinates(coordinates);
-            
+
             mainPageGUI = new MainPageGUI(currentClient.getUserName(), tableElements);
             NextPageHandler nextPageHandler = new NextPageHandler(mainPageGUI, sender, receiver);
             SortingHandler sortingHandler = new SortingHandler(mainPageGUI, sender, receiver);
             FilterHandler filterHandler = new FilterHandler(mainPageGUI, sender, receiver);
             InfoHandler infoHandler = new InfoHandler(sender);
             UpdateCollectionHandler updateCollectionHandler = new UpdateCollectionHandler(sender);
-            
+
             mainPageGUI.setNextPageHandler(nextPageHandler);
             mainPageGUI.setSortingHandler(sortingHandler);
             mainPageGUI.setFilterHandler(filterHandler);

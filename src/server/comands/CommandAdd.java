@@ -68,6 +68,7 @@ public class CommandAdd extends Command<Map<String, Object>> {
                 return "Ошибка: В введённых данных обнаружена ошибка, фильм не добавлен.";
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return "Ошибка: " + e.getMessage();
         }
     }

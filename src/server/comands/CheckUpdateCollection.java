@@ -12,8 +12,7 @@ public class CheckUpdateCollection extends Command<Void> {
 	@Override
 	String command(Void arg, String login, String password) {
 		if(MovieCollection.getLastUpdate().isAfter(Instant.now().minusSeconds(3))) {
-			//return loadNextPage.command(1L, login, password);
-			return "ОбновленияЕсть";
+			return loadNextPage.command(1L, login, password);
 		}
 		else return "ОбновленийНеБыло";
 	}
