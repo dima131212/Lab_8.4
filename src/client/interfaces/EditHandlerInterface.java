@@ -1,5 +1,7 @@
 package client.interfaces;
 
+import java.util.Map;
+
 public interface EditHandlerInterface {
-    void edit();
+    void edit(Map<String, Object> elementFields);
 }

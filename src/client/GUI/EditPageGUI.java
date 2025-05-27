@@ -2,7 +2,7 @@ package client.GUI;
 
 import client.LangManager;
 import client.dataStorage.DataForMovie;
-import client.eventHandlers.AddHandler;
+import client.eventHandlers.EditHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +13,7 @@ import java.awt.event.FocusEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddPageGUI {
-
+public class EditPageGUI {
     public static final int VERTICAL_STRUT = 5;
     public static final int BIG_VERTICAL_STRUT = 10;
 
@@ -35,8 +34,8 @@ public class AddPageGUI {
     public static final String OPERATOR_LOCATION_Z_HINT = "operator location Z";
     public static final String LOCATION_NAME_HINT = "location name";
 
-    public static String BUTTON_TEXT = LangManager.get("add.button.title");
-    public static String WINDOW_TITLE = LangManager.get("add.window.title");
+    public static String BUTTON_TEXT = LangManager.get("edit.button.title");
+    public static String WINDOW_TITLE = LangManager.get("edit.window.title");
 
     public static final Dimension WINDOW_SIZE = new Dimension(300, 500);
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
@@ -64,18 +63,18 @@ public class AddPageGUI {
     private JTextField locationName;
     private JButton button;
     private JDialog window;
-    private AddHandler addHandler;
+    private EditHandler editHandler;
 
-    public AddPageGUI() {
+    public EditPageGUI() {
         window = new JDialog();
         window.setSize(WINDOW_SIZE);
         window.setTitle(WINDOW_TITLE);
 
-        createAddButton();
+        createEditButton();
         createTextFields();
     }
 
-    private void createAddButton() {
+    private void createEditButton() {
         button = new JButton();
         button.setPreferredSize(BUTTON_SIZE);
         button.setMaximumSize(BUTTON_SIZE);
@@ -85,7 +84,7 @@ public class AddPageGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Map<String, Object> elementFields = collectData();
-                addHandler.add(elementFields);
+                editHandler.edit(elementFields);
             }
         });
     }
@@ -524,7 +523,7 @@ public class AddPageGUI {
     }
 
     public void createAndShowWindow() {
-    	setLanguageAddPage();
+        setLanguageAddPage();
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -585,10 +584,10 @@ public class AddPageGUI {
         window.setVisible(true);
     }
     public void setLanguageAddPage() {
-    	BUTTON_TEXT = LangManager.get("add.button.title");
-        WINDOW_TITLE = LangManager.get("add.window.title");
+        BUTTON_TEXT = LangManager.get("edit.button.title");
+        WINDOW_TITLE = LangManager.get("edit.window.title");
     }
-    public void setAddHandler(AddHandler addHandler) {
-        this.addHandler = addHandler;
+    public void setEditHandler(EditHandler editHandler) {
+        this.editHandler = editHandler;
     }
 }

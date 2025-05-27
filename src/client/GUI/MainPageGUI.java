@@ -214,9 +214,8 @@ public class MainPageGUI {
                     
                     ElementInfoPageGUI elementInfoPageGUI = new ElementInfoPageGUI(movie);
                     DeleteHandler deleteHandler = new DeleteHandler(elementInfoPageGUI, Client.sender);
-                    EditHandler editHandler = new EditHandler(elementInfoPageGUI);
-                    elementInfoPageGUI.setEditHandler(editHandler);
                     elementInfoPageGUI.setDeleteHandler(deleteHandler);
+                    elementInfoPageGUI.setId(selectedMovie.getId());
                     elementInfoPageGUI.createAndShowWindow();
                 }
             }

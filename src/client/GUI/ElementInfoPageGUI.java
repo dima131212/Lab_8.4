@@ -32,7 +32,6 @@ public class ElementInfoPageGUI {
 
     public static final Color BUTTON_COLOR = new Color(0, 169, 255);
 
-    private EditHandler editHandler;
     private DeleteHandler deleteHandler;
     private JDialog window;
     private JButton editButton;
@@ -40,6 +39,7 @@ public class ElementInfoPageGUI {
     private JLabel label;
     private JTextArea infoField;
     private String elementData;
+    private Long id;
 
     public ElementInfoPageGUI(String movie) {
         elementData = movie;
@@ -64,7 +64,10 @@ public class ElementInfoPageGUI {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                editHandler.edit();
+                EditPageGUI editPageGUI = new EditPageGUI();
+                EditHandler editHandler = new EditHandler(id);
+                editPageGUI.setEditHandler(editHandler);
+                editPageGUI.createAndShowWindow();
             }
         });
 
@@ -153,11 +156,12 @@ public class ElementInfoPageGUI {
         BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
         LABEL_TEXT =  LangManager.get("info.page.title");
     }
-    public void setEditHandler(EditHandler editHandler) {
-        this.editHandler = editHandler;
-    }
 
     public void setDeleteHandler(DeleteHandler deleteHandler) {
         this.deleteHandler = deleteHandler;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
