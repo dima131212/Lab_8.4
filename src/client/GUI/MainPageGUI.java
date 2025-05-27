@@ -107,7 +107,7 @@ public class MainPageGUI {
         window = new JFrame(TITLE);
         window.setSize(WINDOW_SIZE);
         window.setLayout(new BorderLayout(10, 10));
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         nextPageButton = createNextPageButton();
         sortingMenu = createSortingMenu();
         filtersMenu = createFiltersMenu();

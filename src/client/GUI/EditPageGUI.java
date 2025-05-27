@@ -69,6 +69,7 @@ public class EditPageGUI {
         window = new JDialog();
         window.setSize(WINDOW_SIZE);
         window.setTitle(WINDOW_TITLE);
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         createEditButton();
         createTextFields();

@@ -46,7 +46,7 @@ public class ElementInfoPageGUI {
         window = new JDialog();
         window.setTitle(TITLE);
         window.setSize(INFO_WINDOW_SIZE);
-        window.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         editButton = createEditButton();
         deleteButton = createDeleteButton();
         label = createLabel();

@@ -1,8 +1,10 @@
 package client.GUI;
 
 import client.LangManager;
+import client.custom_gui_elements.InsertConditionPanel;
 import client.dataStorage.DataForMovie;
 import client.eventHandlers.AddHandler;
+import client.other.InsertCondition;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +40,11 @@ public class AddPageGUI {
     public static String BUTTON_TEXT = LangManager.get("add.button.title");
     public static String WINDOW_TITLE = LangManager.get("add.window.title");
 
-    public static final Dimension WINDOW_SIZE = new Dimension(300, 500);
+    public static String MIN_RADIO_BUTTON = LangManager.get("insertmin.button.title");
+    public static String MAX_RADIO_BUTTON = LangManager.get("insertmax.button.title");
+    public static String RADIO_BUTTONS_TITLE = LangManager.get("radio.buttons.title");
+
+    public static final Dimension WINDOW_SIZE = new Dimension(300, 550);
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
     public static final Dimension TEXT_FIELD_SIZE = new Dimension(150, 30);
 
@@ -63,15 +69,20 @@ public class AddPageGUI {
     private JTextField operatorLocationZ;
     private JTextField locationName;
     private JButton button;
+    private InsertConditionPanel insertConditionPanel;
     private JDialog window;
     private AddHandler addHandler;
+
+    private InsertCondition condition;
 
     public AddPageGUI() {
         window = new JDialog();
         window.setSize(WINDOW_SIZE);
         window.setTitle(WINDOW_TITLE);
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         createAddButton();
+        createInsertConditionPanel();
         createTextFields();
     }
 
@@ -85,7 +96,8 @@ public class AddPageGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Map<String, Object> elementFields = collectData();
-                addHandler.add(elementFields);
+                condition = insertConditionPanel.getSelectedCondition();
+                addHandler.add(elementFields, condition);
             }
         });
     }
@@ -476,6 +488,10 @@ public class AddPageGUI {
         });
     }
 
+    private void createInsertConditionPanel() {
+        insertConditionPanel = new InsertConditionPanel(RADIO_BUTTONS_TITLE, MIN_RADIO_BUTTON, MAX_RADIO_BUTTON);
+    }
+
     private Map<String, Object> collectData() {
         HashMap<String, Object> elementFields = new HashMap<>();
 
@@ -544,7 +560,14 @@ public class AddPageGUI {
         operatorLocationY.setAlignmentX(Component.CENTER_ALIGNMENT);
         operatorLocationZ.setAlignmentX(Component.CENTER_ALIGNMENT);
         locationName.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
+        insertConditionPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        buttonsPanel.add(button);
+        buttonsPanel.add(Box.createHorizontalStrut(10));
+        buttonsPanel.add(insertConditionPanel);
 
         panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
         panel.add(nameTextField);
@@ -579,7 +602,7 @@ public class AddPageGUI {
         panel.add(Box.createVerticalStrut(VERTICAL_STRUT));
         panel.add(locationName);
         panel.add(Box.createVerticalStrut(BIG_VERTICAL_STRUT));
-        panel.add(button);
+        panel.add(buttonsPanel);
 
         window.add(panel);
         window.setVisible(true);
@@ -587,6 +610,9 @@ public class AddPageGUI {
     public void setLanguageAddPage() {
     	BUTTON_TEXT = LangManager.get("add.button.title");
         WINDOW_TITLE = LangManager.get("add.window.title");
+        MIN_RADIO_BUTTON = LangManager.get("insertmin.button.title");
+        MAX_RADIO_BUTTON = LangManager.get("insertmax.button.title");
+        RADIO_BUTTONS_TITLE = LangManager.get("radio.buttons.title");
     }
     public void setAddHandler(AddHandler addHandler) {
         this.addHandler = addHandler;
