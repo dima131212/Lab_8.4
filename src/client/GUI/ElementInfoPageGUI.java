@@ -19,7 +19,7 @@ public class ElementInfoPageGUI {
     public static String TITLE = LangManager.get("info.page.title");
 
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
-    public static String BUTTON_EDIT_TITLE = LangManager.get("button.edit.title");
+    public static String BUTTON_EDIT_TITLE = LangManager.get("edit.button.title");
     public static String BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
 
     public static final Dimension INFO_TEXT_FIELD_SIZE = new Dimension(250, 200);

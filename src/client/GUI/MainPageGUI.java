@@ -3,8 +3,10 @@ package client.GUI;
 import client.Client;
 import client.LangManager;
 import client.custom_gui_elements.MovieTableModel;
+import client.custom_gui_elements.ObjectDrawingPanel;
 import client.dataStorage.CollectionView;
 import client.eventHandlers.*;
+import client.other.DrawableObject;
 import client.other.TableElement;
 
 import javax.swing.*;
@@ -15,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  *The {@code GUI.MainPageGui} describes GUI of main page in Collection Viewer from {@code ProgrammingLab8}.
@@ -98,6 +101,7 @@ public class MainPageGUI {
     private JButton addButton;
     private JPanel languageMenu;
     private String currentUser;
+    private ObjectDrawingPanel drawingPanel;
     private ArrayList<TableElement> savedElements;
     
     private JLabel clockLabel;
@@ -115,6 +119,13 @@ public class MainPageGUI {
         languageMenu = createLanguageMenu();
         currentUser = user;
         savedElements = elements;
+
+        drawingPanel = new ObjectDrawingPanel(infoHandler);
+        for (Integer x : CollectionView.getMovieCoordinates().keySet()) {
+            Long y = CollectionView.getMovieCoordinates().get(x);
+            drawingPanel.addObject(new DrawableObject(x*10, y*10, 10, Color.BLUE));
+        }
+
 
         createElements(currentUser, savedElements);
     }
@@ -357,16 +368,22 @@ public class MainPageGUI {
         sortingMenu.setPreferredSize(MENU_PANEL_SIZE);
         filtersMenu.setAlignmentX(Component.LEFT_ALIGNMENT);
         filtersMenu.setPreferredSize(MENU_PANEL_SIZE);
+         languageMenu.setPreferredSize(MENU_PANEL_SIZE);
 
         JPanel menusPanel = new JPanel();
         menusPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
         menusPanel.add(filtersMenu);
         menusPanel.add(sortingMenu);
         menusPanel.add(languageMenu);
+
+
         
         menusPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        drawingPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        drawingPanel.setPreferredSize(new Dimension(500, 500));
 
         rightPanel.add(menusPanel);
+        rightPanel.add(drawingPanel);
         rightPanel.add(Box.createVerticalGlue());
 
 
@@ -374,7 +391,7 @@ public class MainPageGUI {
         window.add(leftPanel, BorderLayout.WEST);
         window.add(rightPanel, BorderLayout.CENTER);
         window.setVisible(true);
-        /**
+        /*
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(userLabel, BorderLayout.WEST);
         topPanel.add(clockLabel, BorderLayout.EAST);
@@ -482,4 +499,8 @@ public class MainPageGUI {
 	public void setUpdateCollectionHandler(UpdateCollectionHandler updateCollectionHandler) {
 		this.updateCollectionHandler = updateCollectionHandler;
 	}
+
+    public JTable getElementsTable() {
+        return elementsTable;
+    }
 }
