@@ -1,0 +1,458 @@
+мая 27, 2025 2:29:52 PM server.Server main
+INFO: Сервер запускается...
+мая 27, 2025 2:31:05 PM server.Server main
+INFO: Сервер запускается...
+мая 27, 2025 2:31:05 PM server.ConnectionHandler <init>
+INFO: Сервер запущен на порту 2348
+мая 27, 2025 2:31:05 PM server.ConnectionHandler acceptClient
+INFO: Принято новое подключение от клиента: 
+мая 27, 2025 2:31:10 PM server.Server main
+INFO: Подключился новый клиент: /127.0.0.1:56158
+мая 27, 2025 2:31:10 PM server.ConnectionHandler acceptClient
+INFO: Принято новое подключение от клиента: 
+мая 27, 2025 2:31:18 PM server.RequestHandler handleClient
+INFO: Список команд отправлен клиенту.
+мая 27, 2025 2:31:19 PM server.RequestHandler handleClient
+INFO: Фабрика данных отправлена клиенту.
+мая 27, 2025 2:31:19 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: load_next_page
+мая 27, 2025 2:31:19 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: load_next_page
+мая 27, 2025 2:31:20 PM server.RequestHandler handleClient
+SEVERE: Ошибка при обработке клиента: Connection reset
+мая 27, 2025 2:31:54 PM server.Server main
+INFO: Подключился новый клиент: /127.0.0.1:56167
+мая 27, 2025 2:31:54 PM server.ConnectionHandler acceptClient
+INFO: Принято новое подключение от клиента: 
+мая 27, 2025 2:32:00 PM server.RequestHandler handleClient
+INFO: Список команд отправлен клиенту.
+мая 27, 2025 2:32:00 PM server.RequestHandler handleClient
+INFO: Фабрика данных отправлена клиенту.
+мая 27, 2025 2:32:00 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: load_next_page
+мая 27, 2025 2:32:00 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: load_next_page
+мая 27, 2025 2:32:01 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:01 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:03 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:03 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:04 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:04 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:06 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:06 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:07 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:07 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:09 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:09 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:10 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:10 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:12 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:12 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:13 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:13 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:15 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:15 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:16 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:16 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:18 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:18 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:19 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:19 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:21 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:21 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:22 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:22 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:24 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:24 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:25 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:25 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:27 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:27 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:28 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:28 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:30 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:30 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:31 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:31 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:33 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:33 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:34 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:34 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:36 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:36 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:37 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:37 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:39 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:39 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:40 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:40 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:42 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:42 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:43 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:43 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:45 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:45 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:46 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:46 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:48 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:48 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:49 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:49 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:51 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:51 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:52 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:52 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:54 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:54 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:55 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:55 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:57 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:57 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:32:58 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:32:58 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:00 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:00 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:01 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:01 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:03 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:03 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:04 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:04 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:06 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:06 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:07 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:07 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:09 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:09 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:10 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:10 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:12 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:12 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:13 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:13 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:15 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:15 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:16 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:16 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:18 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:18 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:19 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:19 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:21 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:21 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:22 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:22 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:24 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:24 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:25 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:25 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:27 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:27 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:28 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:28 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:30 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:30 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:31 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:31 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:33 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:33 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:34 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:34 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:36 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:36 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:37 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:37 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:39 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:39 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:40 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:40 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:42 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:42 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:43 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:43 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:45 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:45 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:46 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:46 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:48 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:48 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:49 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:49 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:51 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:51 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:52 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:52 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:54 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:54 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:55 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:55 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:57 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:57 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:33:58 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:33:58 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:00 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:00 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:01 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:01 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:03 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:03 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:04 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:04 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:06 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:06 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:07 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:07 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:09 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:09 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:10 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:10 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:12 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:12 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:13 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:13 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:15 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:15 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:16 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:16 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:18 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:18 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:19 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:19 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:21 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:21 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:22 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:22 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:24 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:24 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:25 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:25 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:27 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:27 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:28 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:28 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:30 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:30 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:31 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:31 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:33 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:33 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:34 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:34 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:36 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:36 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:37 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:37 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
+мая 27, 2025 2:34:39 PM server.RequestHandler handleClient
+INFO: Получена команда от клиента: check_update_collection
+мая 27, 2025 2:34:39 PM server.RequestHandler lambda$handleClient$1
+INFO: Команда выполнена: check_update_collection
