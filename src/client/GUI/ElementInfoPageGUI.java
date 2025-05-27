@@ -19,7 +19,7 @@ public class ElementInfoPageGUI {
     public static String TITLE = LangManager.get("info.page.title");
 
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
-    public static String BUTTON_EDIT_TITLE = LangManager.get("button.edit.title");
+    public static String BUTTON_EDIT_TITLE = LangManager.get("edit.button.title");
     public static String BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
 
     public static final Dimension INFO_TEXT_FIELD_SIZE = new Dimension(250, 200);
@@ -32,31 +32,28 @@ public class ElementInfoPageGUI {
 
     public static final Color BUTTON_COLOR = new Color(0, 169, 255);
 
-    private EditHandler editHandler;
     private DeleteHandler deleteHandler;
-    private JFrame window;
+    private JDialog window;
     private JButton editButton;
     private JButton deleteButton;
     private JLabel label;
     private JTextArea infoField;
     private String elementData;
+    private Long id;
 
     public ElementInfoPageGUI(String movie) {
         elementData = movie;
-        window = new JFrame(TITLE);
+        window = new JDialog();
+        window.setTitle(TITLE);
         window.setSize(INFO_WINDOW_SIZE);
-        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         editButton = createEditButton();
         deleteButton = createDeleteButton();
         label = createLabel();
         infoField = createInfoTextArea();
     }
 
-    /**
-     * Method which creates edit button
-     * @return {@code JButton} - new {@code JButton} with pre created configuration
-     * */
-    //TODO add action listener logic
+
     private JButton createEditButton() {
         JButton button = new JButton();
         button.setText(BUTTON_EDIT_TITLE);
@@ -67,7 +64,10 @@ public class ElementInfoPageGUI {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                editHandler.edit();
+                EditPageGUI editPageGUI = new EditPageGUI();
+                EditHandler editHandler = new EditHandler(id);
+                editPageGUI.setEditHandler(editHandler);
+                editPageGUI.createAndShowWindow();
             }
         });
 
@@ -78,7 +78,6 @@ public class ElementInfoPageGUI {
      * Method which creates delete button
      * @return {@code JButton} - new {@code JButton} with pre created configuration
      * */
-    //TODO add action listener logic
     private JButton createDeleteButton() {
         JButton button = new JButton();
         button.setText(BUTTON_DELETE_TITLE);
@@ -104,7 +103,7 @@ public class ElementInfoPageGUI {
         JTextArea textArea = new JTextArea();
         textArea.setSize(INFO_TEXT_FIELD_SIZE);
         textArea.setMaximumSize(INFO_TEXT_FIELD_SIZE);
-        textArea.setText(elementData.toString());
+        textArea.setText(elementData);
         textArea.setEditable(false);
 
         return textArea;
@@ -157,11 +156,12 @@ public class ElementInfoPageGUI {
         BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
         LABEL_TEXT =  LangManager.get("info.page.title");
     }
-    public void setEditHandler(EditHandler editHandler) {
-        this.editHandler = editHandler;
-    }
 
     public void setDeleteHandler(DeleteHandler deleteHandler) {
         this.deleteHandler = deleteHandler;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -16,6 +16,7 @@ public class LangManager {
     		put("español", "es-HN");
     	}
     };
+
     public static void setLanguage(String lang) {
     	String langCode = language.get(lang);
     	Locale locale = Locale.forLanguageTag(langCode);
@@ -24,14 +25,14 @@ public class LangManager {
 
     public static String get(String key) {
         if (bundle == null) {
-            setLanguage("en"); 
+            setLanguage("en");
         }
         return bundle.getString(key);
     }
-    
+
     public static Locale getCurrentLocale() {
         if (bundle == null) {
-            setLanguage("en"); 
+            setLanguage("en");
         }
         return bundle.getLocale();
     }

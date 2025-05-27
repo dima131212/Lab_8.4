@@ -52,7 +52,7 @@ public class RegistrationPageGUI {
         JFrame parentFrame = null;
         window = new JDialog(parentFrame, TITLE, true);
         window.setSize(REGISTRATION_WINDOW_SIZE);
-        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         label = createLabel();
         loginField = createTextField();
         passwordField = createPasswordField();
