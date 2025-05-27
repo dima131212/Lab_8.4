@@ -19,8 +19,8 @@ public class ElementInfoPageGUI {
     public static String TITLE = LangManager.get("info.page.title");
 
     public static final Dimension BUTTON_SIZE = new Dimension(100, 50);
-    public static String BUTTON_EDIT_TITLE = LangManager.get("edit.button.title");
-    public static String BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
+    public static String BUTTON_EDIT_TITLE = LangManager.get("info.edit.title");
+    public static String BUTTON_DELETE_TITLE = LangManager.get("info.delete.title");
 
     public static final Dimension INFO_TEXT_FIELD_SIZE = new Dimension(250, 200);
 
@@ -152,8 +152,8 @@ public class ElementInfoPageGUI {
     }
     public void setLanguageInfoPage() {
     	TITLE = LangManager.get("info.page.title");
-        BUTTON_EDIT_TITLE = LangManager.get("button.edit.title");
-        BUTTON_DELETE_TITLE = LangManager.get("button.edit.delete");
+        BUTTON_EDIT_TITLE = LangManager.get("info.edit.title");
+        BUTTON_DELETE_TITLE = LangManager.get("info.delete.title");
         LABEL_TEXT =  LangManager.get("info.page.title");
     }
 

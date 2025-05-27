@@ -19,7 +19,6 @@ import client.executeScript.ExecuteScript;
 import client.executeScript.FileStack;
 import client.other.PageParser;
 import client.other.TableElement;
-import com.sun.tools.javac.Main;
 
 
 public class Client {
